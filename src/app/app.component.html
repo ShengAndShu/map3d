@@ -1,0 +1,29 @@
+<div id="mapContainer"></div>
+<div class="search-container">
+  <input #searchInput (click)="onInputClick($event)" type="text">
+  <a *ngIf="detailDisplay" class="cancel-btn" (click)="cancel()"></a>
+</div>
+<div class="list-container">
+  <ul *ngIf="listDisplay">
+    <li *ngFor="let item of searchList">
+      <a (click)="goToPoint(item)">
+        {{item.name}}
+        <span class="list-address">{{item.addr}}</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div *ngIf="detailDisplay" class="panel">
+    <div class="panel-top">
+      <div class="detail-addr">{{itemData.addr}}</div>
+    </div>
+    <div class="detail-container">
+      <div #detail *ngIf="hasDetail"></div>
+      <div *ngIf="!hasDetail" style="padding: 20px;">
+        没有找到相关信息
+      </div>
+    </div>
+</div>
+<div class="control-container">
+  <button (click)="exportMap()">导出</button>
+</div>
